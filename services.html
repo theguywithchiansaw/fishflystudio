@@ -411,6 +411,11 @@
         bottom: 10px;
       }
     }
+
+      header a {
+            text-decoration: none;
+            color: #fff; /* Set the color of the links, change as needed */
+        }
   </style>
 
 </head>
@@ -419,16 +424,16 @@
 
   <div class="splash-intro">
     <div class="logo">
-      <img src="your-logo.gif" alt="Logo" />
+      <img src="images/your-logo.gif" alt="Logo" />
     </div>
   </div>
 
   <header>
     <div id="logo" onmouseover="playGif()" onmouseout="stopGif()">
-      <a href="https://www.pinterest.com/homefeed/">
-        <img id="logo-image" src="your-logo.gif">
+      <a href="homepage.html">
+        <img id="logo-image" src="images/your-logo.gif">
       </a>
-      FishFly Studio
+      <a href="homepage.html" id="logo-text">FishFly Studio</a>
     </div>
   </header>
 
@@ -444,16 +449,16 @@
   </div>
 
   <div class="menu-overlay">
-    <a href="#">WORKS</a>
-    <a href="#">SERVICES</a>
-    <a href="#">CONTACT</a>
+    <a href="works.html">WORKS</a>
+    <a href="services.html">SERVICES</a>
+    <a href="homepage.html">CONTACT</a>
   </div>
 
   <!-- posts -->
   <main>
     <section class="red">
       <div class="box">
-        <img src="designer fish 1.png" alt="Your Image 1">
+        <img src="images/designer fish 1.png" alt="Your Image 1">
       </div>
       <div class="box">
         <div class="content">
@@ -472,7 +477,7 @@
 
     <section class="green">
       <div class="box">
-        <img src="designer fish 1.png" alt="Your Image 2">
+        <img src="images/designer fish 1.png" alt="Your Image 2">
       </div>
       <div class="box">
         <div class="content">
@@ -492,7 +497,7 @@
 
     <section class="blue">
       <div class="box">
-        <img src="designer fish 1.png" alt="Your Image 3">
+        <img src="images/designer fish 1.png" alt="Your Image 3">
       </div>
       <div class="box">
         <div class="content">
@@ -508,7 +513,7 @@
 
     <section class="orange">
       <div class="box">
-        <img src="designer fish 1.png" alt="Your Image 4">
+        <img src="images/designer fish 1.png" alt="Your Image 4">
       </div>
       <div class="box">
         <div class="content">
@@ -550,11 +555,11 @@
     var gif = document.getElementById("logo-image");
 
     function playGif() {
-      gif.src = "your-logo.gif"; // Replace with the actual path to your GIF
+      gif.src = "images/your-logo.gif"; // Replace with the actual path to your GIF
     }
 
     function stopGif() {
-      gif.src = "your-logo-static.gif"; // Replace with a static image of your logo
+      gif.src = "images/your-logo-static.gif"; // Replace with a static image of your logo
     }
   </script>
 
