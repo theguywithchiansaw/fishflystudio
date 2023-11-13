@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(212, 44, 44, 0.0);
+            /* Transparent background */
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            z-index: 999;
+            /* Set a high z-index to ensure it's on top */
+        }
+
+        /*Logo stuff*/
+
+        #logo {
+            display: flex;
+            top: 20px;
+            left: 30px;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #fff;
+            /* Add any additional styling here */
+        }
+
+        #logo img {
+            left: 30px;
+            top: 20px;
+            width: 100px;
+            /* Set the width of the logo image */
+            height: auto;
+            /* Automatically adjust the height to maintain aspect ratio */
+            margin-right: 1px;
+            /* Add some spacing between the image and text */
+        }
+
+        /*spalsh intro*/
+
+        .splash-intro {
+            background: #4b4be1;
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation-name: intro-animation;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+
+        .logo img {
+            max-width: 100px;
+            /* Set the maximum width for the logo image */
+            max-height: 100px;
+            /* Set the maximum height for the logo image */
+        }
+
+        @keyframes intro-animation {
+            0% {}
+
+            80% {
+                transform: translateY(0%);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+
+        .splash-intro .logo {
+            width: 100px;
+            height: 100px;
+            border: 2px solid white;
+            display: grid;
+            place-items: center;
+            border-radius: 100%;
+
+            /* ANIMATION CODE   */
+            animation-name: logo-animation;
+            animation-duration: 1.5s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes logo-animation {
+            0% {
+                opacity: 0;
+                transform: scale(.8);
+            }
+
+            25% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            75% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1.2);
+            }
+        }
+
+        /*splash intro ends*/
+
+        /* ------------- */
+        .menu {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            height: 66px;
+            width: 66px;
+        }
+
+        .menu-link {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1002;
+        }
+
+        .menu-icon {
+            position: absolute;
+            width: 32px;
+            height: 21px;
+            margin: auto;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 1px;
+        }
+
+        /* ------------- */
+
+        .menu-line {
+            background-color: #fff;
+            height: 3px;
+            width: 100%;
+            border-radius: 2px;
+            position: absolute;
+            left: 0;
+            transition: all 0.25s ease-in-out;
+        }
+
+        .menu-line-2 {
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .menu-line-3 {
+            bottom: 0;
+        }
+
+        .menu.open .menu-line-1 {
+            transform: translateY(10px) translateY(-50%) rotate(-45deg);
+        }
+
+        .menu.open .menu-line-2 {
+            opacity: 0;
+        }
+
+        .menu.open .menu-line-3 {
+            transform: translateY(-10px) translateY(50%) rotate(45deg);
+        }
+
+        /* ------------- */
+        .menu-circle {
+            background-color: #5091ff;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .menu:hover .menu-circle {
+            transform: scale(1.1);
+        }
+
+        .menu.open .menu-circle {
+            transform: scale(60);
+        }
+
+        /* ------------- */
+        .menu-overlay {
+            background-color: #5091ff;
+            color: #333;
+            height: 100%;
+            width: 100%;
+            font-family: 'Archivo', sans-serif;
+            position: fixed;
+            text-align: center;
+            transition: opacity 0.2s ease-in-out;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-overlay a {
+            color: #fff;
+            font-weight: 600;
+            font-size: 80px;
+            padding: 2%;
+            display: inline-block;
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+            text-decoration-color: #3737b3;
+            /* Remove underline on links */
+            transition: 0.1s;
+            /* Add a smooth transition effect */
+        }
+
+        .menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-overlay a:hover {
+            transform: scale(1.3);
+            text-decoration: underline;
+            /* Scale the text on hover */
+            text-decoration-color: #3737b3;
+            transition: 0.2s;
+        }
+
+        /* ------------- */
+        .info {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .overlay-info {
+            text-align: center;
+            color: #111825;
+        }
+
+        /* To position the "Scroll Down" button */
+
+        .landing {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #000;
+            position: relative;
+            /* To position the "Scroll Down" button */
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #text-container {
+            color: white;
+            text-align: center;
+            position: absolute;
+            /* Position the text at the center */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #video-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        #background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #landing-text {
+            font-size: 48px;
+            text-align: center;
+            color: white;
+        }
+
+        .section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            transition: transform 1s ease-in-out;
+        }
+
+        #page1 {
+            color: #fff;
+        }
+
+        #page2 {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+
+        #scroll-down-btn {
+            position: absolute;
+            bottom: 160px;
+            font-size: 1.5em;
+            color: #fff;
+            cursor: pointer;
+            animation: bounce 1.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(10px);
+            }
+        }
+
+        /* container and text box */
+
+        #container {
+            display: flex;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        #image {
+            flex: 1;
+            margin-bottom: 20px; /* Add some spacing between image and text in mobile view */
+        }
+
+        #text-box {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: rgba(212, 44, 44, 0.0);
+        }
+
+        #text-box p {
+            font-size: 20px;
+            font-family: 'Helvetica', sans-serif;
+        }
+
+        #text-box h2 {
+            font-size: 70px;
+            font-family: 'Archivo', sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center the image */
+        }
+
+                /* Media query for mobile view */
+                @media only screen and (max-width: 767px) {
+            #container {
+                flex-direction: column; /* Stack boxes in mobile view */
+            }
+
+            #image,
+            #text-box {
+                width: 100%; /* Make each box take full width in mobile view */
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="splash-intro">
+        <div class="logo">
+            <img src="your-logo.gif" alt="Logo" />
+        </div>
+    </div>
+
+    <header>
+        <div id="logo" onmouseover="playGif()" onmouseout="stopGif()">
+            <a href="https://www.pinterest.com/homefeed/">
+                <img id="logo-image" src="your-logo.gif">
+            </a>
+            FishFly Studio
+        </div>
+    </header>
+
+    <div class="menu">
+        <span class="menu-circle"></span>
+        <a href="#" class="menu-link">
+            <span class="menu-icon">
+                <span class="menu-line menu-line-1"></span>
+                <span class="menu-line menu-line-2"></span>
+                <span class="menu-line menu-line-3"></span>
+            </span>
+        </a>
+    </div>
+
+    <div class="menu-overlay">
+        <a href="#">WORKS</a>
+        <a href="#">SERVICES</a>
+        <a href="#">CONTACT</a>
+    </div>
+
+    <div id="page1" class="section">
+        <div id="video-container">
+            <video id="background-video" autoplay loop muted>
+                <source src="color.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="text-container">
+            <div id="landing-text">Welcome to Your Website</div>
+        </div>
+        <div id="scroll-down-btn"> 🡓 </div>
+    </div>
+
+    <div id="page2" class="section">
+        <div id="container">
+            <div id="image">
+                <img src="designer fish.png" alt="Your Image">
+            </div>
+            <div id="text-box">
+                <h2>About us</h2>
+                <p>
+                    At FishFly, we're not any typical fish; we're the imaginative explorers who
+                    fly high to turn creative visions into reality, thrive on deep dives into the
+                    realms of imagination. With specialization in branding, animation, illustration
+                    and socials, our dedicated team is committed to crafting captivating visuals
+                    and concepts that leave your audience craving for more.
+                </p>
+                <!-- ... (rest of your content) ... -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let scrolling = false;
+            let currentPage = 1;
+
+            document.getElementById('scroll-down-btn').addEventListener('click', function () {
+                // Scroll down from Page 1 to Page 2
+                document.getElementById('page1').style.transform = "translateY(-100vh)";
+                document.getElementById('page2').style.transform = "translateY(-100vh)";
+                currentPage = 2;
+            });
+
+            document.addEventListener("wheel", function (e) {
+                if (!scrolling) {
+                    scrolling = true;
+                    setTimeout(function () {
+                        scrolling = false;
+                    }, 1000);
+
+                    if (e.deltaY > 0 && currentPage === 1) {
+                        // Scroll down from Page 1 to Page 2
+                        document.getElementById('page1').style.transform = "translateY(-100vh)";
+                        document.getElementById('page2').style.transform = "translateY(-100vh)";
+                        currentPage = 2;
+                    } else if (e.deltaY < 0 && currentPage === 2) {
+                        // Scroll up from Page 2 to Page 1
+                        document.getElementById('page1').style.transform = "translateY(0)";
+                        document.getElementById('page2').style.transform = "translateY(0)";
+                        currentPage = 1;
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- landing text -->
+    <script>
+        // JavaScript to change the landing text with fade-in and fade-out
+        const textArray = ["Welcome to Your Website", "Text 2", "Text 3"]; // Add your desired text values
+        let currentIndex = 0;
+        const landingText = document.getElementById("landing-text");
+
+        function changeLandingText() {
+            // Smoothly fade out the current text
+            $(landingText).fadeOut(500, function () {
+                // Change the text content
+                landingText.textContent = textArray[currentIndex];
+
+                // Smoothly fade in the new text
+                $(landingText).fadeIn(500);
+            });
+
+            // Update the index for the next iteration
+            currentIndex = (currentIndex + 1) % textArray.length;
+        }
+
+        setInterval(changeLandingText, 4000); // Change text every 4 seconds
+    </script>
+
+    <!-- menu -->
+    <script>
+        $(function () {
+
+            $(".menu-link").click(function (e) {
+                e.preventDefault();
+
+                $(".menu-overlay").toggleClass("open");
+                $(".menu").toggleClass("open");
+
+            });
+
+        });
+    </script>
+
+    <!-- logo animation -->
+
+    <script>
+        var gif = document.getElementById("logo-image");
+
+        function playGif() {
+            gif.src = "your-logo.gif"; // Replace with the actual path to your GIF
+        }
+
+        function stopGif() {
+            gif.src = "your-logo-static.gif"; // Replace with a static image of your logo
+        }
+    </script>
+
+</body>
+
+</html>

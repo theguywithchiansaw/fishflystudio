@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Website Title</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      /* Enable smooth scrolling */
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(212, 44, 44, 0.0);
+      /* Transparent background */
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      z-index: 999;
+      /* Set a high z-index to ensure it's on top */
+    }
+
+    /*Logo stuff*/
+
+    #logo {
+      display: flex;
+      top: 20px;
+      left: 30px;
+      align-items: center;
+      font-weight: bold;
+      font-size: 24px;
+      color: #fff;
+      /* Add any additional styling here */
+    }
+
+    #logo img {
+      left: 30px;
+      top: 20px;
+      width: 100px;
+      /* Set the width of the logo image */
+      height: auto;
+      /* Automatically adjust the height to maintain aspect ratio */
+      margin-right: 1px;
+      /* Add some spacing between the image and text */
+    }
+
+    /*spalsh intro*/
+
+    .splash-intro {
+      background: #4b4be1;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation-name: intro-animation;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+    }
+
+    .logo img {
+      max-width: 100px;
+      /* Set the maximum width for the logo image */
+      max-height: 100px;
+      /* Set the maximum height for the logo image */
+    }
+
+    @keyframes intro-animation {
+      0% {}
+
+      80% {
+        transform: translateY(0%);
+      }
+
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+
+
+    .splash-intro .logo {
+      width: 100px;
+      height: 100px;
+      border: 2px solid white;
+      display: grid;
+      place-items: center;
+      border-radius: 100%;
+
+      /* ANIMATION CODE   */
+      animation-name: logo-animation;
+      animation-duration: 1.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes logo-animation {
+      0% {
+        opacity: 0;
+        transform: scale(.8);
+      }
+
+      25% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      75% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.2);
+      }
+    }
+
+    /*splash intro ends*/
+
+    /* ------------- */
+    .menu {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      height: 66px;
+      width: 66px;
+    }
+
+    .menu-link {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1002;
+    }
+
+    .menu-icon {
+      position: absolute;
+      width: 32px;
+      height: 21px;
+      margin: auto;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 1px;
+    }
+
+    /* ------------- */
+
+    .menu-line {
+      background-color: #fff;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+      position: absolute;
+      left: 0;
+      transition: all 0.25s ease-in-out;
+    }
+
+    .menu-line-2 {
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    .menu-line-3 {
+      bottom: 0;
+    }
+
+    .menu.open .menu-line-1 {
+      transform: translateY(10px) translateY(-50%) rotate(-45deg);
+    }
+
+    .menu.open .menu-line-2 {
+      opacity: 0;
+    }
+
+    .menu.open .menu-line-3 {
+      transform: translateY(-10px) translateY(50%) rotate(45deg);
+    }
+
+    /* ------------- */
+    .menu-circle {
+      background-color: #5091ff;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .menu:hover .menu-circle {
+      transform: scale(1.1);
+    }
+
+    .menu.open .menu-circle {
+      transform: scale(60);
+    }
+
+    /* ------------- */
+    .menu-overlay {
+      background-color: #5091ff;
+      color: #333;
+      height: 100%;
+      width: 100%;
+      font-family: 'Archivo', sans-serif;
+      position: fixed;
+      text-align: center;
+      transition: opacity 0.2s ease-in-out;
+      z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-overlay a {
+      color: #fff;
+      font-weight: 600;
+      font-size: 80px;
+      padding: 2%;
+      display: inline-block;
+      position: relative;
+      color: #fff;
+      text-decoration: none;
+      text-decoration-color: #3737b3;
+      /* Remove underline on links */
+      transition: 0.1s;
+      /* Add a smooth transition effect */
+    }
+
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-overlay a:hover {
+      transform: scale(1.3);
+      text-decoration: underline;
+      /* Scale the text on hover */
+      text-decoration-color: #3737b3;
+      transition: 0.2s;
+    }
+
+    /* Page animation */
+    main {
+      height: 300vh;
+      /* Set a larger height to create enough space for all sections */
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      /* Updated to stack boxes in mobile view */
+      justify-content: center;
+      align-items: center;
+    }
+
+    /** section colors */
+    .red {
+      background: #fe4a4f;
+    }
+
+    .green {
+      background: #3fbe7d;
+    }
+
+    .blue {
+      background: #4b4be1;
+    }
+
+    .orange {
+      background: #ff9f35;
+    }
+
+    .box {
+      width: 100%;
+      height: 70%;
+      text-align: left;
+      margin: 1em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      /* Ensure the entire image fits within the container */
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      font-family: 'Archivo', sans-serif;
+    }
+
+    p {
+      font-size: 1.3em;
+      font-family: 'Helvetica', sans-serif;
+    }
+
+    .scroll-btn {
+      position: absolute;
+      left: 50%;
+      font-size: 2.5em;
+      color: #fff;
+      cursor: pointer;
+      animation: bounce 1.5s infinite alternate;
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(10px);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .box {
+        width: 35%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      section {
+        flex-direction: row;
+        /* Updated to side-by-side in desktop view */
+      }
+
+      .box .content {
+        padding-top: 20%;
+        padding-left: 20%;
+      }
+
+      .menu-overlay a {
+        font-size: 80px
+        ;
+      }
+      .scroll-btn {
+        bottom: 0px;
+      }
+
+    }
+
+    @media (max-width: 767px) {
+      
+      .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+      }
+
+      .box img {
+        width: 70%;
+        padding-top: 10%;
+        /* Adjust the width as needed for smaller screens */
+        height: auto;
+        margin: auto;
+        /* Center the image horizontally */
+      }
+
+      .box p {
+        font-size: 1.0em;
+        width: 90%;
+        padding: 0 20px;
+      }
+
+      .box h1 {
+        font-size: 1.8em;
+        width: 90%;
+        padding: 0 20px;
+
+      }
+
+      .menu-overlay a {
+        font-size: 50px;
+        margin-bottom: 10px;
+      }
+      
+      .scroll-btn {
+        bottom: 10px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="splash-intro">
+    <div class="logo">
+      <img src="your-logo.gif" alt="Logo" />
+    </div>
+  </div>
+
+  <header>
+    <div id="logo" onmouseover="playGif()" onmouseout="stopGif()">
+      <a href="https://www.pinterest.com/homefeed/">
+        <img id="logo-image" src="your-logo.gif">
+      </a>
+      FishFly Studio
+    </div>
+  </header>
+
+  <div class="menu">
+    <span class="menu-circle"></span>
+    <a href="#" class="menu-link">
+      <span class="menu-icon">
+        <span class="menu-line menu-line-1"></span>
+        <span class="menu-line menu-line-2"></span>
+        <span class="menu-line menu-line-3"></span>
+      </span>
+    </a>
+  </div>
+
+  <div class="menu-overlay">
+    <a href="#">WORKS</a>
+    <a href="#">SERVICES</a>
+    <a href="#">CONTACT</a>
+  </div>
+
+  <!-- posts -->
+  <main>
+    <section class="red">
+      <div class="box">
+        <img src="designer fish 1.png" alt="Your Image 1">
+      </div>
+      <div class="box">
+        <div class="content">
+          <h1>Dive into motion with FishFly!
+          </h1>
+          <h2>_______________________
+          </h2>
+          <p>In our underwater realm of animation, our Fin-tastic Fishes turn dreams into a sea-riously awesome reality!
+          </p>
+          <p>We're not just clowning around (well, maybe a little). We're dead serious about bringing your ideas to life
+            with the energy your brand deserves.</p>
+        </div>
+        <div class="scroll-btn" onclick="scrollToSection(1)">🡓</div>
+      </div>
+    </section>
+
+    <section class="green">
+      <div class="box">
+        <img src="designer fish 1.png" alt="Your Image 2">
+      </div>
+      <div class="box">
+        <div class="content">
+          <h1>Bubbling with Ideas
+          </h1>
+          <h2>_______________________
+          </h2>
+          <p>At Fishfly Studio, thinking outside the fishbowl is our specialty. We invest time in thoughtful
+            brainstorming to ensure your animation doesn't just exist; it resonates, leaving a distinct mark in the vast
+            digital ocean.
+          </p>
+
+        </div>
+        <div class="scroll-btn" onclick="scrollToSection(2)">🡓</div>
+      </div>
+    </section>
+
+    <section class="blue">
+      <div class="box">
+        <img src="designer fish 1.png" alt="Your Image 3">
+      </div>
+      <div class="box">
+        <div class="content">
+          <h1>2D Waves, 3D Wonders</h1>
+          <h2>_______________________
+          </h2>
+          <p>Experience the Animation Symphony with Fishfly Studio! Whether your story thrives on the smooth elegance of 2D animation or the jaw-dropping depth of 3D wonders, our fishes specialise in both.</p>
+          <p>We add that extra dimension, turning ordinary animations into extraordinary experiences.</p>
+        </div>
+        <div class="scroll-btn" onclick="scrollToSection(3)">🡓</div>
+      </div>
+    </section>
+
+    <section class="orange">
+      <div class="box">
+        <img src="designer fish 1.png" alt="Your Image 4">
+      </div>
+      <div class="box">
+        <div class="content">
+          <h1>Scale Matters</h1>
+          <h2>_______________________
+          </h2>
+          <p>Whether you're a small fish in a big pond or a big fish in a small pond, we've got animations that fit your scale.</p>
+          <p>Dive into Fishfly Studio, where creativity flows, and fins create fantastic animations! Contact us, and let's embark on a journey to make a splash in the digital ocean. 
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.4/fullpage.min.js></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+  <!-- menu -->
+  <script>
+    $(function () {
+
+      $(".menu-link").click(function (e) {
+        e.preventDefault();
+
+        $(".menu-overlay").toggleClass("open");
+        $(".menu").toggleClass("open");
+
+      });
+
+    });
+  </script>
+
+  <!-- logo animation -->
+
+  <script>
+    var gif = document.getElementById("logo-image");
+
+    function playGif() {
+      gif.src = "your-logo.gif"; // Replace with the actual path to your GIF
+    }
+
+    function stopGif() {
+      gif.src = "your-logo-static.gif"; // Replace with a static image of your logo
+    }
+  </script>
+
+  <!-- scroll button -->
+
+  <script>
+    function scrollToSection(sectionIndex) {
+      const sections = document.querySelectorAll('section');
+      const nextSection = sections[sectionIndex];
+      nextSection.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  </script>
+
+
+</body>
+
+</html>
